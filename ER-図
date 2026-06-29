@@ -1,0 +1,40 @@
+Table users {
+  user_id int [pk, increment]
+  student_id varchar
+  nickname varchar
+}
+
+
+Table categories {
+  category_id int [pk, increment]
+  category_name varchar
+}
+
+
+Table products {
+  product_id int [pk, increment]
+
+  seller_id int [ref: > users.user_id]
+  category_id int [ref: > categories.category_id]
+
+  name varchar
+  condition varchar
+  description text
+  image_url varchar
+  pickup_location varchar
+
+  status varchar
+}
+
+
+Table transactions {
+  transaction_id int [pk, increment]
+
+  product_id int [ref: > products.product_id]
+
+  seller_id int [ref: > users.user_id]
+  buyer_id int [ref: > users.user_id]
+
+  transaction_date datetime
+}
+// https://dbdiagram.io/d/Diagram-6a4279794ac62e474ceccc44
