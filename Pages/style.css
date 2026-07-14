@@ -1,0 +1,355 @@
+/* ==========================================
+   共通・リセット設定
+   ========================================== */
+* {
+    box-sizing: border-box; /* サイズ計算のズレを防ぐ */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   レイアウト・コンテナ
+   ========================================== */
+.main-container {
+    max-width: 1000px;
+    margin: 32px auto;
+    padding: 0 16px;
+}
+
+/* ==========================================
+   コンポーネント: ボタン
+   ========================================== */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #28a745;
+    color: #fff;
+}
+.btn-secondary:hover {
+    background-color: #218838;
+}
+
+.btn-search {
+    background-color: #17a2b8;
+    color: #fff;
+}
+.btn-search:hover {
+    background-color: #138496;
+}
+
+.btn-disabled {
+    background-color: #ced4da;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* ==========================================
+   ヘッダー & フッター
+   ========================================== */
+.header {
+    background-color: #fff;
+    border-bottom: 2px solid #e9ecef;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    color: #007bff;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-link {
+    color: #495057;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+.footer {
+    text-align: center;
+    padding: 24px;
+    background-color: #343a40;
+    color: #ced4da;
+    margin-top: 64px;
+}
+
+/* ==========================================
+   検索セクション
+   ========================================== */
+.search-section {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 32px;
+}
+
+.search-section h2 {
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.search-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 2;
+    min-width: 200px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+}
+
+.search-select {
+    flex: 1;
+    min-width: 150px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+/* ==========================================
+   商品一覧（グリッド）
+   ========================================== */
+.products-section {
+    margin-bottom: 48px;
+}
+
+.products-section h2 {
+    margin-bottom: 20px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    position: relative;
+    border: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.badge-available {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.badge-trading {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.product-img-placeholder {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+.product-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.product-category {
+    font-size: 12px;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.product-title {
+    font-size: 16px;
+    margin: 4px 0 8px 0;
+}
+
+.product-status-text, .product-location {
+    font-size: 14px;
+    color: #495057;
+    margin-bottom: 4px;
+}
+
+.product-footer {
+    margin-top: auto;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #dc3545;
+}
+
+/* ==========================================
+   出品フォームセクション
+   ========================================== */
+.sell-section {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.sell-section h2 {
+    margin-bottom: 24px;
+    border-bottom: 2px solid #f4f6f9;
+    padding-bottom: 8px;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.required {
+    color: #dc3545;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    outline: none;
+}
+
+.form-control-file {
+    display: block;
+    margin-top: 4px;
+}
+
+.text-area {
+    resize: vertical;
+}
+
+/* ==========================================
+   レスポンシブ対応 (スマートフォン用)
+   ========================================== */
+@media (max-width: 600px) {
+    .header-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .search-form {
+        flex-direction: column;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .main-container {
+        margin: 16px auto;
+    }
+    .sell-section {
+        padding: 16px;
+    }
+}
