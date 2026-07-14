@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>校内資源マッチングシステム（仮）</title>
+    <title>白砂寮資源管理システム（仮）</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,10 +11,28 @@
     <!-- ヘッダー -->
     <header class="header">
         <div class="header-container">
-            <h1 class="logo">校内資源マッチング</h1>
+            <div class="header-banner">
+                <img src="../Resources/Images/YugeLogo.png" width="50px">
+                <h1 class="logo">白砂寮資源管理システム</h1>
+            </div>
             <nav class="nav">
-                <a href="#product-list" class="nav-link">商品一覧</a>
-                <a href="#sell-form" class="btn btn-primary">出品する</a>
+                <span id="button-goto-product-list" class="nav-link">資源一覧</span>
+                <span id="button-goto-sell-section" class="btn btn-primary">出品する</span>
+                <span id="button-goto-request-section" class="btn btn-secondary">リクエストする</span>
+                <a style="height: 24px;" href="profile.html">
+                    <svg width="24px" class="btn-svg btn-profile" style="margin-right: 16px;" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+                            <g id="Dribbble-Light-Preview" transform="translate(-180.000000, -2159.000000)">
+                                <g id="icons" transform="translate(56.000000, 160.000000)">
+                                    <path d="M134,2008.99998 C131.783496,2008.99998 129.980955,2007.20598 129.980955,2004.99998 C129.980955,2002.79398 131.783496,2000.99998 134,2000.99998 C136.216504,2000.99998 138.019045,2002.79398 138.019045,2004.99998 C138.019045,2007.20598 136.216504,2008.99998 134,2008.99998 M137.775893,2009.67298 C139.370449,2008.39598 140.299854,2006.33098 139.958235,2004.06998 C139.561354,2001.44698 137.368965,1999.34798 134.722423,1999.04198 C131.070116,1998.61898 127.971432,2001.44898 127.971432,2004.99998 C127.971432,2006.88998 128.851603,2008.57398 130.224107,2009.67298 C126.852128,2010.93398 124.390463,2013.89498 124.004634,2017.89098 C123.948368,2018.48198 124.411563,2018.99998 125.008391,2018.99998 C125.519814,2018.99998 125.955881,2018.61598 126.001095,2018.10898 C126.404004,2013.64598 129.837274,2010.99998 134,2010.99998 C138.162726,2010.99998 141.595996,2013.64598 141.998905,2018.10898 C142.044119,2018.61598 142.480186,2018.99998 142.991609,2018.99998 C143.588437,2018.99998 144.051632,2018.48198 143.995366,2017.89098 C143.609537,2013.89498 141.147872,2010.93398 137.775893,2009.67298" id="profile-[#1341]">
+
+                    </path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                
             </nav>
         </div>
     </header>
@@ -30,12 +48,18 @@
                     <option value="">すべてのカテゴリ</option>
                     <option value="bicycle">自転車</option>
                     <option value="furniture">家具</option>
-                    <option value="textbook">教科書</option>
+                    <option value="textbook">本・教科書</option>
+                    <option value="clothes">衣類</option>
+                    <option value="electronic">家電</option>
+                    <option value="outdoor">アウトドア</option>
+                    <option value="tools">工具</option>
                     <option value="others">その他</option>
                 </select>
                 <select class="search-select">
-                    <option value="available">出品中のみ</option>
                     <option value="all">すべて表示</option>
+                    <option value="listed">出品のみ</option>
+                    <option value="available">出品中のみ</option>
+                    <option value="request">リクエストのみ</option>
                 </select>
                 <button type="button" class="btn btn-search">検索</button>
             </form>
@@ -43,54 +67,132 @@
 
         <!-- 商品一覧エリア -->
         <section id="product-list" class="products-section">
-            <h2>出品された資源一覧</h2>
+            <h2>資源一覧</h2>
             <div class="products-grid">
                 
                 <!-- 商品カード 1 -->
-                <div class="product-card">
-                    <div class="product-badge badge-available">出品中</div>
-                    <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #ff4d6d;">🚲</div>
+                <div class="product-card product-card-available">
+                    <div class="product-badge">出品中</div>
+                    <div class="product-owner-actions">
+                        <div class="btn-svg btn-edit">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.1497 7.93997L8.27971 19.81C7.21971 20.88 4.04971 21.3699 3.27971 20.6599C2.50971 19.9499 3.06969 16.78 4.12969 15.71L15.9997 3.84C16.5478 3.31801 17.2783 3.03097 18.0351 3.04019C18.7919 3.04942 19.5151 3.35418 20.0503 3.88938C20.5855 4.42457 20.8903 5.14781 20.8995 5.90463C20.9088 6.66146 20.6217 7.39189 20.0997 7.93997H20.1497Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21H12"/>
+                            </svg>
+                        </div>
+                        <div class="btn-svg btn-delete">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
+                        </div>
+                    </div>
+                    
+                    <div class="product-img-container">
+                        <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #ff4d6d;">🚲</div>
+                    </div>
                     <div class="product-info">
                         <span class="product-category">自転車</span>
                         <h3 class="product-title">通学用ママチャリ</h3>
                         <p class="product-status-text">状態: ★★★☆☆ (普通)</p>
                         <p class="product-location">📍 受け取り: 寮ゴミ捨て場横</p>
                         <div class="product-footer">
-                            <span class="product-price">¥0 (譲渡)</span>
-                            <button class="btn btn-secondary btn-sm">詳細 / 譲渡希望</button>
+                            <span class="product-price free">¥0 (譲渡)</span>
+                            <button class="btn btn-sm">詳細 / 譲渡希望</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 商品カード 2 -->
-                <div class="product-card">
-                    <div class="product-badge badge-available">出品中</div>
-                    <div class="product-img-placeholder" style="background-color: #e0f2fe; color: #0284c7;">📚</div>
+                <div class="product-card product-card-available">
+                    <div class="product-badge">出品中</div>
+                    <div class="product-img-container">
+                        <div class="product-img-placeholder" style="background-color: #e0f2fe; color: #0284c7;">📚</div>
+                    </div>
                     <div class="product-info">
-                        <span class="product-category">教科書</span>
+                        <span class="product-category">本・教科書</span>
                         <h3 class="product-title">航海学基礎 テキスト</h3>
                         <p class="product-status-text">状態: ★★★★★ (美品)</p>
                         <p class="product-location">📍 受け取り: 出品者の部屋</p>
                         <div class="product-footer">
-                            <span class="product-price">¥0 (譲渡)</span>
-                            <button class="btn btn-secondary btn-sm">詳細 / 譲渡希望</button>
+                            <span class="product-price free">¥0 (譲渡)</span>
+                            <button class="btn btn-sm">詳細 / 譲渡希望</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- 商品カード 3 -->
-                <div class="product-card">
-                    <div class="product-badge badge-trading">取引中</div>
-                    <div class="product-img-placeholder" style="background-color: #fef3c7; color: #d97706;">🪑</div>
+                <div class="product-card product-card-trading">
+                    <div class="product-badge">取引中</div>
+                    <div class="product-img-container">
+                        <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #d97706;">🪑</div>
+                    </div>
                     <div class="product-info">
                         <span class="product-category">家具</span>
                         <h3 class="product-title">折りたたみミニテーブル</h3>
-                        <p class="product-status-text">状態: ★★☆☆☆ (傷あり)</p>
-                        <p class="product-location">📍 受け取り: 第1中庭</p>
+                        <p class="product-status-text">状態: ★★☆☆☆ (状態が悪い)</p>
+                        <p class="product-location">📍 受け取り: 寮事務所</p>
                         <div class="product-footer">
-                            <span class="product-price">¥0 (譲渡)</span>
-                            <button class="btn btn-disabled btn-sm" disabled>取引中</button>
+                            <span class="product-price free">¥0 (譲渡)</span>
+                            <button class="btn btn-sm">取引中</button>
                         </div>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-trading">
+                    <div class="product-badge">取引中</div>
+                    <div class="product-img-container">
+                        <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #d97706;">🖥️</div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">家電</span>
+                        <h3 class="product-title">ゲーミングモニター</h3>
+                        <p class="product-status-text">状態: ★★★★☆ (目立った傷なし)</p>
+                        <p class="product-location">📍 受け取り: 出品者の部屋</p>
+                        <div class="product-footer">
+                            <span class="product-price paid">¥15.000</span>
+                            <button class="btn btn-sm">取引中</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-taken">
+                    <div class="product-badge">取引済み</div>
+                    <div class="product-owner-actions">
+                        <div class="btn-svg btn-edit">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.1497 7.93997L8.27971 19.81C7.21971 20.88 4.04971 21.3699 3.27971 20.6599C2.50971 19.9499 3.06969 16.78 4.12969 15.71L15.9997 3.84C16.5478 3.31801 17.2783 3.03097 18.0351 3.04019C18.7919 3.04942 19.5151 3.35418 20.0503 3.88938C20.5855 4.42457 20.8903 5.14781 20.8995 5.90463C20.9088 6.66146 20.6217 7.39189 20.0997 7.93997H20.1497Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 21H12"/>
+                            </svg>
+                        </div>
+                        <div class="btn-svg btn-delete">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
+                        </div>
+                    </div>
+                    
+                    <div class="product-img-container">
+                        <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #d97706;">🪑</div>
+                    </div>
+                    <!-- <div class="product-img-placeholder" style="background-color: #fef3c7; color: #d97706;">🪑</div> -->
+                    <div class="product-info">
+                        <span class="product-category">家具</span>
+                        <h3 class="product-title">勉強用デスク</h3>
+                        <p class="product-status-text">状態: ★★★★★ (美品)</p>
+                        <p class="product-location">📍 受け取り: 寮事務所</p>
+                    </div>
+                </div>
+
+                <div class="product-card product-card-request">
+                    <div class="product-badge">リクエスト</div>
+                    <div class="product-img-container">
+                        <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #d97706;">
+                            <svg width="128px" height="128px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <title>add</title>
+                            <path d="M26.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h2.5v-2.5c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 21c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 15c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 9c-0.276 0-0.5-0.224-0.5-0.5v-2.5h-2.5c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM20.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM20.5 6h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM19.938 15c0.552 0 1 0.447 1 1 0 0.552-0.448 1-1 1h-3v3c0 0.552-0.448 1-1 1-0.553 0-1-0.448-1-1v-3h-3c-0.552 0-1-0.448-1-1 0-0.553 0.447-1 1-1h3v-3c0-0.553 0.447-1 1-1 0.552 0 1 0.447 1 1v3h3zM14.5 6h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM8.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5s0.5 0.224 0.5 0.5v2.5h2.5c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5zM8.5 6h-2.5v2.5c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5h3c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5zM5.5 11c0.276 0 0.5 0.224 0.5 0.5v3c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5zM5.5 17c0.276 0 0.5 0.224 0.5 0.5v3c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5zM11.5 26h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- <div class="product-img-placeholder" style="background-color: #fef3c7; color: #d97706;">🪑</div> -->
+                    <div class="product-info">
+                        <span class="product-category">家具</span>
+                        <h3 class="product-title">折りたたみミニテーブル</h3>
                     </div>
                 </div>
 
@@ -98,67 +200,185 @@
         </section>
 
         <!-- 出品フォームエリア -->
-        <section id="sell-form" class="sell-section">
-            <h2>不要になった資源を出品する</h2>
-            <form class="form-container" onsubmit="return false;">
-                <div class="form-group">
-                    <label class="form-label">出品者名（ニックネーム可） <span class="required">必須</span></label>
-                    <input type="text" class="form-control" placeholder="例: 寮生A" required>
+        <section id="sell-form" class="form-section">
+            <div class="container-generic">
+                <div class="container-header">
+                    <h2 class="container-header-title">不要になった資源を出品する</h2>
+                    <div class="btn-container-expand">V</div>
                 </div>
+                <div class="container-generic-item">
+                    <form class="form-container" onsubmit="return false;">
+                        <br>
+                        <div class="form-group">
+                            <label class="form-label">出品者名（ニックネーム可） <span class="required">必須</span></label>
+                            <input type="text" class="form-control" placeholder="例: 寮生A" required>
+                        </div>
 
-                <div class="form-group">
-                    <label class="form-label">品名 <span class="required">必須</span></label>
-                    <input type="text" class="form-control" placeholder="例: ○○の教科書、パイプ椅子" required>
+                        <div class="form-group">
+                            <label class="form-label">品名 <span class="required">必須</span></label>
+                            <input type="text" class="form-control" placeholder="例: ○○の教科書、パイプ椅子" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">カテゴリ<span class="required">必須</span></label>
+                                <select class="form-control" required>
+                                    <option value="">選択してください</option>
+                                    <option value="bicycle">自転車</option>
+                                    <option value="furniture">家具</option>
+                                    <option value="textbook">本・教科書</option>
+                                    <option value="clothes">衣類</option>
+                                    <option value="electronic">家電</option>
+                                    <option value="outdoor">アウトドア</option>
+                                    <option value="tools">工具</option>
+                                    <option value="others">その他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">商品の状態 <span class="required">必須</span></label>
+                                <select class="form-control" required>
+                                    <option value="">選択してください</option>
+                                    <option value="5">★★★★★ (未使用に近い・美品)</option>
+                                    <option value="4">★★★★☆ (目立った傷なし)</option>
+                                    <option value="3">★★★☆☆ (やや傷あり・普通)</option>
+                                    <option value="2">★★☆☆☆ (状態が悪い)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">受け取り希望場所 <span class="required">必須</span></label>
+                            <input type="text" class="form-control" placeholder="例: 寮ゴミ捨て場リユースエリア、自身の部屋など" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">商品の写真</label>
+                            <input type="file" class="form-control-file">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">詳細説明</label>
+                            <textarea class="form-control text-area" rows="4" placeholder="商品の詳細な状態や、受け渡しに関する補足があれば記入してください。"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">この資源を出品する</button>
+                        <br>
+                    </form>
                 </div>
+            </div>
+        </section>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">カテゴリ <span class="required">必須</span></label>
-                        <select class="form-control" required>
-                            <option value="">選択してください</option>
-                            <option value="bicycle">自転車</option>
-                            <option value="furniture">家具</option>
-                            <option value="textbook">教科書</option>
-                            <option value="others">その他</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">商品の状態 <span class="required">必須</span></label>
-                        <select class="form-control" required>
-                            <option value="">選択してください</option>
-                            <option value="5">★★★★★ (未使用に近い)</option>
-                            <option value="4">★★★★☆ (目立った傷なし)</option>
-                            <option value="3">★★★☆☆ (やや傷あり・普通)</option>
-                            <option value="2">★★☆☆☆ (状態が悪い)</option>
-                        </select>
-                    </div>
+        <section id="request-form" class="form-section">
+            <div class="container-generic">
+                <div class="container-header">
+                    <h2 class="container-header-title">リクエストする</h2>
+                    <div class="btn-container-expand">V</div>
                 </div>
+                <div class="container-generic-item">
+                    <form class="form-container" onsubmit="return false;">
+                        <br>
 
-                <div class="form-group">
-                    <label class="form-label">受け取り希望場所 <span class="required">必須</span></label>
-                    <input type="text" class="form-control" placeholder="例: 寮ゴミ捨て場リユースエリア、自身の部屋など" required>
+                        <div class="form-group">
+                            <label class="form-label">品名 <span class="required">必須</span></label>
+                            <input type="text" class="form-control" placeholder="例: ○○の教科書、パイプ椅子" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">カテゴリ<span class="required">必須</span></label>
+                                <select class="form-control" required>
+                                    <option value="">選択してください</option>
+                                    <option value="bicycle">自転車</option>
+                                    <option value="furniture">家具</option>
+                                    <option value="textbook">本・教科書</option>
+                                    <option value="clothes">衣類</option>
+                                    <option value="electronic">家電</option>
+                                    <option value="outdoor">アウトドア</option>
+                                    <option value="tools">工具</option>
+                                    <option value="others">その他</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">商品の状態</label>
+                                <select class="form-control">
+                                    <option value="">選択してください</option>
+                                    <option value="5">★★★★★以上 (未使用に近い・美品)</option>
+                                    <option value="4">★★★★☆以上 (目立った傷なし)</option>
+                                    <option value="3">★★★☆☆以上 (やや傷あり・普通)</option>
+                                    <option value="2">★★☆☆☆以上 (状態が悪い)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">リクエスト詳細</label>
+                            <textarea class="form-control text-area" rows="4" placeholder="リクエストの詳細や必要事項などがあれば記入してください。"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">この資源を出品する</button>
+                        <br>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-label">商品の写真</label>
-                    <input type="file" class="form-control-file">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">詳細説明</label>
-                    <textarea class="form-control text-area" rows="4" placeholder="商品の詳細な状態や、受け渡しに関する補足があれば記入してください。"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block">この資源を出品する</button>
-            </form>
+            </div>
         </section>
 
     </main>
 
     <!-- フッター -->
     <footer class="footer">
-        <p>&copy; 2026 チームゴミ野郎 - 校内資源マッチングシステム（仮）</p>
+        <p>&copy; 2026 チームゴミ野郎 - 白砂寮資源管理システム（仮）</p>
     </footer>
+    <script>
+        const headerContainer = document.querySelector(".header-container");
+        const sellSection = document.querySelector("#sell-form");
+        const requestSection = document.querySelector("#request-form");
+        const productsSection = document.querySelector(".products-section");
 
+        const forms = document.querySelectorAll(".form-section");
+        
+        const sellSectionGotoButton = document.querySelector("#button-goto-sell-section");
+        const productListGotoButton = document.querySelector("#button-goto-product-list");
+        const requestSectionGotoButton = document.querySelector("#button-goto-request-section");
+
+        const headerHeight = parseInt(window.getComputedStyle(headerContainer).getPropertyValue("height"));
+        
+        sellSectionGotoButton.addEventListener("click", () => {
+            const scrollCoord = sellSection.getBoundingClientRect().top + window.scrollY - headerHeight - (window.innerHeight * 0.025);
+            window.scrollTo({top: scrollCoord, behavior: "smooth"});
+
+            const containerExpandIcon = sellSection.querySelector(".btn-container-expand");
+            const containerItem = sellSection.querySelector(".container-generic-item");
+
+            containerExpandIcon.classList.add("expand");
+            containerItem.classList.add("expand");
+        });
+
+        productListGotoButton.addEventListener("click", () => {
+            const scrollCoord = productsSection.getBoundingClientRect().top + window.scrollY - headerHeight - (window.innerHeight * 0.025);
+            window.scrollTo({top: scrollCoord, behavior: "smooth"});
+        });
+
+        requestSectionGotoButton.addEventListener("click", () => {
+            const scrollCoord = requestSection.getBoundingClientRect().top + window.scrollY - headerHeight - (window.innerHeight * 0.025);
+            window.scrollTo({top: scrollCoord, behavior: "smooth"});
+
+            const containerExpandIcon = requestSection.querySelector(".btn-container-expand");
+            const containerItem = requestSection.querySelector(".container-generic-item");
+
+            containerExpandIcon.classList.add("expand");
+            containerItem.classList.add("expand");
+        });
+
+        forms.forEach(element => {
+            const containerHeader = element.querySelector(".container-header");
+            const containerExpandIcon = element.querySelector(".btn-container-expand");
+            const containerItem = element.querySelector(".container-generic-item");
+
+            containerHeader.addEventListener("click", () => {
+                containerExpandIcon.classList.toggle("expand");
+                containerItem.classList.toggle("expand");
+            });
+        });
+    </script>
 </body>
 </html>
