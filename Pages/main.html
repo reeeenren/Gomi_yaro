@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校内資源マッチングシステム（仮）</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-container">
+            <h1 class="logo">校内資源マッチング</h1>
+            <nav class="nav">
+                <a href="#product-list" class="nav-link">商品一覧</a>
+                <a href="#sell-form" class="btn btn-primary">出品する</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <!-- 検索・絞り込みエリア -->
+        <section class="search-section">
+            <h2>欲しい資源を探す</h2>
+            <form class="search-form" onsubmit="return false;">
+                <input type="text" placeholder="品名、出品者名で検索..." class="search-input">
+                <select class="search-select">
+                    <option value="">すべてのカテゴリ</option>
+                    <option value="bicycle">自転車</option>
+                    <option value="furniture">家具</option>
+                    <option value="textbook">教科書</option>
+                    <option value="others">その他</option>
+                </select>
+                <select class="search-select">
+                    <option value="available">出品中のみ</option>
+                    <option value="all">すべて表示</option>
+                </select>
+                <button type="button" class="btn btn-search">検索</button>
+            </form>
+        </section>
+
+        <!-- 商品一覧エリア -->
+        <section id="product-list" class="products-section">
+            <h2>出品された資源一覧</h2>
+            <div class="products-grid">
+                
+                <!-- 商品カード 1 -->
+                <div class="product-card">
+                    <div class="product-badge badge-available">出品中</div>
+                    <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #ff4d6d;">🚲</div>
+                    <div class="product-info">
+                        <span class="product-category">自転車</span>
+                        <h3 class="product-title">通学用ママチャリ</h3>
+                        <p class="product-status-text">状態: ★★★☆☆ (普通)</p>
+                        <p class="product-location">📍 受け取り: 寮ゴミ捨て場横</p>
+                        <div class="product-footer">
+                            <span class="product-price">¥0 (譲渡)</span>
+                            <button class="btn btn-secondary btn-sm">詳細 / 譲渡希望</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商品カード 2 -->
+                <div class="product-card">
+                    <div class="product-badge badge-available">出品中</div>
+                    <div class="product-img-placeholder" style="background-color: #e0f2fe; color: #0284c7;">📚</div>
+                    <div class="product-info">
+                        <span class="product-category">教科書</span>
+                        <h3 class="product-title">航海学基礎 テキスト</h3>
+                        <p class="product-status-text">状態: ★★★★★ (美品)</p>
+                        <p class="product-location">📍 受け取り: 出品者の部屋</p>
+                        <div class="product-footer">
+                            <span class="product-price">¥0 (譲渡)</span>
+                            <button class="btn btn-secondary btn-sm">詳細 / 譲渡希望</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商品カード 3 -->
+                <div class="product-card">
+                    <div class="product-badge badge-trading">取引中</div>
+                    <div class="product-img-placeholder" style="background-color: #fef3c7; color: #d97706;">🪑</div>
+                    <div class="product-info">
+                        <span class="product-category">家具</span>
+                        <h3 class="product-title">折りたたみミニテーブル</h3>
+                        <p class="product-status-text">状態: ★★☆☆☆ (傷あり)</p>
+                        <p class="product-location">📍 受け取り: 第1中庭</p>
+                        <div class="product-footer">
+                            <span class="product-price">¥0 (譲渡)</span>
+                            <button class="btn btn-disabled btn-sm" disabled>取引中</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 出品フォームエリア -->
+        <section id="sell-form" class="sell-section">
+            <h2>不要になった資源を出品する</h2>
+            <form class="form-container" onsubmit="return false;">
+                <div class="form-group">
+                    <label class="form-label">出品者名（ニックネーム可） <span class="required">必須</span></label>
+                    <input type="text" class="form-control" placeholder="例: 寮生A" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">品名 <span class="required">必須</span></label>
+                    <input type="text" class="form-control" placeholder="例: ○○の教科書、パイプ椅子" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">カテゴリ <span class="required">必須</span></label>
+                        <select class="form-control" required>
+                            <option value="">選択してください</option>
+                            <option value="bicycle">自転車</option>
+                            <option value="furniture">家具</option>
+                            <option value="textbook">教科書</option>
+                            <option value="others">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">商品の状態 <span class="required">必須</span></label>
+                        <select class="form-control" required>
+                            <option value="">選択してください</option>
+                            <option value="5">★★★★★ (未使用に近い)</option>
+                            <option value="4">★★★★☆ (目立った傷なし)</option>
+                            <option value="3">★★★☆☆ (やや傷あり・普通)</option>
+                            <option value="2">★★☆☆☆ (状態が悪い)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">受け取り希望場所 <span class="required">必須</span></label>
+                    <input type="text" class="form-control" placeholder="例: 寮ゴミ捨て場リユースエリア、自身の部屋など" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">商品の写真</label>
+                    <input type="file" class="form-control-file">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">詳細説明</label>
+                    <textarea class="form-control text-area" rows="4" placeholder="商品の詳細な状態や、受け渡しに関する補足があれば記入してください。"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">この資源を出品する</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <p>&copy; 2026 チームゴミ野郎 - 校内資源マッチングシステム（仮）</p>
+    </footer>
+
+</body>
+</html>
