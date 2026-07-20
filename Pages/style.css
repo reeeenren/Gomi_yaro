@@ -32,7 +32,7 @@ body {
 .main-container {
     max-width: 1000px;
     margin: 32px auto;
-    padding: 0 16px;
+    padding: 0 48px;
 }
 
 /* ==========================================
@@ -155,7 +155,7 @@ body {
 .header-container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 16px;
+    padding: 16px 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -527,7 +527,7 @@ body {
 /* ==========================================
    レスポンシブ対応 (スマートフォン用)
    ========================================== */
-@media (max-width: 600px) {
+@media (max-width: 770px) {
     .search-form {
         flex-direction: column;
     }
@@ -543,7 +543,7 @@ body {
     }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 920px) {
     .header-container {
         flex-direction: column;
         gap: 12px;
@@ -551,5 +551,15 @@ body {
 
     .header-banner {
         justify-content: center;
+    }
+}
+
+@media (max-width: 530px) {
+    .nav {
+        flex-direction: column;
+    }
+
+    .btn-profile {
+        margin: 0 !important;
     }
 }
