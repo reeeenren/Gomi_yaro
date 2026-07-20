@@ -19,6 +19,82 @@
     transition-timing-function: cubic-bezier(0.3 , 0, 0.15, 1);
 }
 
+.animation-default {
+    --transition-time: 0.4s;
+    transition: all 0.4s cubic-bezier(0.3 , 0, 0.15, 1);
+}
+
+.animation-halftime {
+    --transition-time: 0.2s;
+    transition: all 0.2s cubic-bezier(0.3 , 0, 0.15, 1);
+}
+
+.animation-doubletime {
+    --transition-time: 0.8s;
+    transition: all 0.8s cubic-bezier(0.3 , 0, 0.15, 1);
+}
+
+.animation-delaycontroller {
+    --delay: 0s;
+}
+
+.generic-fade {
+    opacity: 0;
+    animation: var(--transition-time, 1s) fadeIn cubic-bezier(0.3 , 0, 0.15, 1) forwards;
+    animation-delay: var(--delay);
+}
+
+.generic-appear {
+    animation: var(--transition-time, 1s) cubic-bezier(0.3 , 0, 0.15, 1) appearSelfheight;
+    animation-delay: var(--delay);
+}
+
+.generic-appear-fade {
+    opacity: 0;
+    animation: var(--transition-time, 1s) cubic-bezier(0.3 , 0, 0.15, 1) appearSelfheight, var(--transition-time, 1s) cubic-bezier(0.3 , 0, 0.15, 1) fadeIn forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes appearSelfheight {
+    0% {
+        transform: translate(0, var(--animation-height));
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes disappearSelfheight {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(0, var(--animation-height));
+    }
+}
+
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #f4f6f9;
@@ -273,6 +349,7 @@ body {
     flex-direction: column;
     user-select: none;
     transition: 0.2s;
+    --animation-height: 10%;
 }
 
 .product-card:hover {
