@@ -1,0 +1,37 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin: 2rem;
+}
+main {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.menu-nav, .form-group {
+    margin-bottom: 1rem;
+}
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+/* ボタン風デザイン */
+a.btn, input[type="submit"] {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+table {
+    margin: 1rem auto;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+}

@@ -3,46 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>白砂寮資源管理システム（仮）</title>
+    <title>白砂寮資源管理システム</title>
+    <!-- 【解説】外部のCSSファイルを読み込むタグ。これがないとデザインが適用されない -->
+    <!-- 【入力】 <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-    <!-- ヘッダー -->
+    <!-- 【解説】画面上部の固定バー全体。<header>タグにクラス名"header"をつけてCSSでデザインする -->
+    <!-- 【入力】 <header class="header"> -->
     <header class="header">
         <div class="header-container">
             <div class="header-banner">
-                <img src="../Resources/Images/YugeLogo.png" width="50px">
+                <img src="../Resources/Images/YugeLogo.png" width="50px" alt="白砂寮ロゴ">
                 <h1 class="logo">白砂寮資源管理システム</h1>
             </div>
+            <!-- 【解説】ナビゲーションメニュー。id名はJavaScript(script.js)がボタンを特定するために使う -->
             <nav class="nav">
                 <span id="button-goto-product-list" class="nav-link">資源一覧</span>
-                <span id="button-goto-sell-section" class="btn btn-primary">出品する</span>
+                <span id="button-goto-request-section" class="btn btn-primary">出品する</span>
+
                 <span id="button-goto-request-section" class="btn btn-secondary">リクエストする</span>
                 <a style="height: 24px;" href="profile.html">
                     <svg width="24px" class="btn-svg btn-profile" style="margin-right: 16px;" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
                             <g id="Dribbble-Light-Preview" transform="translate(-180.000000, -2159.000000)">
                                 <g id="icons" transform="translate(56.000000, 160.000000)">
-                                    <path d="M134,2008.99998 C131.783496,2008.99998 129.980955,2007.20598 129.980955,2004.99998 C129.980955,2002.79398 131.783496,2000.99998 134,2000.99998 C136.216504,2000.99998 138.019045,2002.79398 138.019045,2004.99998 C138.019045,2007.20598 136.216504,2008.99998 134,2008.99998 M137.775893,2009.67298 C139.370449,2008.39598 140.299854,2006.33098 139.958235,2004.06998 C139.561354,2001.44698 137.368965,1999.34798 134.722423,1999.04198 C131.070116,1998.61898 127.971432,2001.44898 127.971432,2004.99998 C127.971432,2006.88998 128.851603,2008.57398 130.224107,2009.67298 C126.852128,2010.93398 124.390463,2013.89498 124.004634,2017.89098 C123.948368,2018.48198 124.411563,2018.99998 125.008391,2018.99998 C125.519814,2018.99998 125.955881,2018.61598 126.001095,2018.10898 C126.404004,2013.64598 129.837274,2010.99998 134,2010.99998 C138.162726,2010.99998 141.595996,2013.64598 141.998905,2018.10898 C142.044119,2018.61598 142.480186,2018.99998 142.991609,2018.99998 C143.588437,2018.99998 144.051632,2018.48198 143.995366,2017.89098 C143.609537,2013.89498 141.147872,2010.93398 137.775893,2009.67298" id="profile-[#1341]">
-
-                    </path>
+                                    <path d="M134,2008.99998 C131.783496,2008.99998 129.980955,2007.20598 129.980955,2004.99998 C129.980955,2002.79398 131.783496,2000.99998 134,2000.99998 C136.216504,2000.99998 138.019045,2002.79398 138.019045,2004.99998 C138.019045,2007.20598 136.216504,2008.99998 134,2008.99998 M137.775893,2009.67298 C139.370449,2008.39598 140.299854,2006.33098 139.958235,2004.06998 C139.561354,2001.44698 137.368965,1999.34798 134.722423,1999.04198 C131.070116,1998.61898 127.971432,2001.44898 127.971432,2004.99998 C127.971432,2006.88998 128.851603,2008.57398 130.224107,2009.67298 C126.852128,2010.93398 124.390463,2013.89498 124.004634,2017.89098 C123.948368,2018.48198 124.411563,2018.99998 125.008391,2018.99998 C125.519814,2018.99998 125.955881,2018.61598 126.001095,2018.10898 C126.404004,2013.64598 129.837274,2010.99998 134,2010.99998 C138.162726,2010.99998 141.595996,2013.64598 141.998905,2018.10898 C142.044119,2018.61598 142.480186,2018.99998 142.991609,2018.99998 C143.588437,2018.99998 144.051632,2018.48198 143.995366,2017.89098 C143.609537,2013.89498 141.147872,2010.93398 137.775893,2009.67298" id="profile-[#1341]"></path>
                                 </g>
                             </g>
                         </g>
                     </svg>
                 </a>
-                
             </nav>
         </div>
     </header>
 
     <main class="main-container">
 
-        <!-- 検索・絞り込みエリア -->
         <section class="search-section">
             <h2>欲しい資源を探す</h2>
             <form class="search-form" onsubmit="return false;">
+            <!-- 【解説】onsubmit="return false;" をつけることで、ボタンを押した時の勝手なページ再読み込みを防ぐ -->
+            <!-- 【入力】 <form class="search-form" onsubmit="return false;"> -->
+
                 <input type="text" placeholder="品名、出品者名で検索..." class="search-input">
                 <select class="search-select">
                     <option value="">すべてのカテゴリ</option>
@@ -65,13 +70,14 @@
             </form>
         </section>
 
-        <!-- 商品一覧エリア -->
         <section id="product-list" class="products-section">
             <h2>資源一覧</h2>
+            <!-- 【解説】CSS Gridを使って、中の商品カードを画面幅に合わせて自動でタイル状に並べる箱 -->
+            <!-- 【入力】 <div class="products-grid"> -->
             <div class="products-grid">
-                
-                <!-- 商品カード 1 -->
-                <div class="product-card product-card-available animation-doubletime animation-delaycontroller generic-appear-fade">
+                <!-- 【解説】商品カード1枚目。product-card-available(出品中)などのクラス名でバッジやボタンの色が変わる -->
+                <!-- 【入力】 <div class="product-card product-card-available animation-doubletime animation-delaycontroller generic-appear-fade"> -->
+                    <div class="product-card product-card-available animation-doubletime animation-delaycontroller generic-appear-fade">
                     <div class="product-badge">出品中</div>
                     <div class="product-owner-actions">
                         <div class="btn-svg btn-edit">
@@ -84,7 +90,7 @@
                             <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
                         </div>
                     </div>
-                    
+
                     <div class="product-img-container">
                         <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #ff4d6d;">🚲</div>
                     </div>
@@ -100,7 +106,6 @@
                     </div>
                 </div>
 
-                <!-- 商品カード 2 -->
                 <div class="product-card product-card-available animation-doubletime animation-delaycontroller generic-appear-fade">
                     <div class="product-badge">出品中</div>
                     <div class="product-img-container">
@@ -118,7 +123,6 @@
                     </div>
                 </div>
 
-                <!-- 商品カード 3 -->
                 <div class="product-card product-card-trading animation-doubletime animation-delaycontroller generic-appear-fade">
                     <div class="product-badge">取引中</div>
                     <div class="product-img-container">
@@ -166,11 +170,10 @@
                             <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z"/></svg>
                         </div>
                     </div>
-                    
+
                     <div class="product-img-container">
                         <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #d97706;">🪑</div>
                     </div>
-                    <!-- <div class="product-img-placeholder" style="background-color: #fef3c7; color: #d97706;">🪑</div> -->
                     <div class="product-info">
                         <span class="product-category">家具</span>
                         <h3 class="product-title">勉強用デスク</h3>
@@ -185,11 +188,10 @@
                         <div class="product-img-placeholder" style="background-color: #ffe0e6; color: #d97706;">
                             <svg width="128px" height="128px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <title>add</title>
-                            <path d="M26.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h2.5v-2.5c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 21c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 15c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 9c-0.276 0-0.5-0.224-0.5-0.5v-2.5h-2.5c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM20.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM20.5 6h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM19.938 15c0.552 0 1 0.447 1 1 0 0.552-0.448 1-1 1h-3v3c0 0.552-0.448 1-1 1-0.553 0-1-0.448-1-1v-3h-3c-0.552 0-1-0.448-1-1 0-0.553 0.447-1 1-1h3v-3c0-0.553 0.447-1 1-1 0.552 0 1 0.447 1 1v3h3zM14.5 6h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM8.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5s0.5 0.224 0.5 0.5v2.5h2.5c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5zM8.5 6h-2.5v2.5c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5h3c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5zM5.5 11c0.276 0 0.5 0.224 0.5 0.5v3c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5zM5.5 17c0.276 0 0.5 0.224 0.5 0.5v3c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5zM11.5 26h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5z"></path>
+                            <path d="M26.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h2.5v-2.5c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 21c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 15c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5 0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM26.5 9c-0.276 0-0.5-0.224-0.5-0.5v-2.5h-2.5c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5v3c0 0.276-0.225 0.5-0.5 0.5zM20.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM20.5 6h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM19.938 15c0.552 0 1 0.447 1 1 0 0.552-0.448 1-1 1h-3v3c0.552 0 1 0.448 1 1-0.553 0-1-0.448-1-1v-3h-3c-0.552 0-1-0.448-1-1 0-0.553 0.447-1 1-1h3v-3c0-0.553 0.447-1 1-1 0.552 0 1 0.447 1 1v3h3zM14.5 6h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5zM8.5 27h-3c-0.276 0-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5s0.5 0.224 0.5 0.5v2.5h2.5c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5zM8.5 6h-2.5v2.5c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5h3c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5zM5.5 11c0.276 0 0.5 0.224 0.5 0.5v3c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5zM5.5 17c0.276 0 0.5 0.224 0.5 0.5v3c0 0.276-0.224 0.5-0.5 0.5s-0.5-0.224-0.5-0.5v-3c0-0.276 0.224-0.5 0.5-0.5zM11.5 26h3c0.275 0 0.5 0.224 0.5 0.5s-0.225 0.5-0.5 0.5h-3c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5z"></path>
                             </svg>
                         </div>
                     </div>
-                    <!-- <div class="product-img-placeholder" style="background-color: #fef3c7; color: #d97706;">🪑</div> -->
                     <div class="product-info">
                         <span class="product-category">家電</span>
                         <h3 class="product-title">ヘアドライヤー</h3>
@@ -199,13 +201,16 @@
             </div>
         </section>
 
-        <!-- 出品フォームエリア -->
-        <section id="sell-form" class="form-section">
+        <!-- 【解説】アコーディオン開閉する出品フォームの箱。id="sell-form" をJSが取得してスクロール・開閉する -->
+        <!-- 【入力】 <section id="sell-form" class="form-section"> -->
+            <section id="sell-form" class="form-section">
             <div class="container-generic">
                 <div class="container-header">
                     <h2 class="container-header-title">不要になった資源を出品する</h2>
                     <div class="btn-container-expand">V</div>
                 </div>
+                <!-- 【解説】普段は高さ0(非表示)で、JSで"expand"クラスが付くと開く中身 -->
+                <!-- 【入力】 <div class="container-generic-item"> -->
                 <div class="container-generic-item">
                     <form class="form-container" onsubmit="return false;">
                         <br>
@@ -261,7 +266,7 @@
                             <textarea class="form-control text-area" rows="4" placeholder="商品の詳細な状態や、受け渡しに関する補足があれば記入してください。"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block">この資源を出品する</button>
+                        <button type="submit" class="btn btn-primary btn-block">出品する</button>
                         <br>
                     </form>
                 </div>
@@ -324,71 +329,12 @@
 
     </main>
 
-    <!-- フッター -->
     <footer class="footer">
         <p>&copy; 2026 チームゴミ野郎 - 白砂寮資源管理システム（仮）</p>
     </footer>
-    <script>
-        const headerContainer = document.querySelector(".header-container");
-        const sellSection = document.querySelector("#sell-form");
-        const requestSection = document.querySelector("#request-form");
-        const productsSection = document.querySelector(".products-section");
 
-        const forms = document.querySelectorAll(".form-section");
+    <!-- 【解説】deferをつけることで、HTMLの読み込みがすべて終わってからscript.jsを実行させる（要素が見つからないエラー防止） -->
+    <!-- 【入力】 <script src="script.js" defer></script> -->
 
-        const productCards = document.querySelectorAll(".product-card");
-        
-        const sellSectionGotoButton = document.querySelector("#button-goto-sell-section");
-        const productListGotoButton = document.querySelector("#button-goto-product-list");
-        const requestSectionGotoButton = document.querySelector("#button-goto-request-section");
-
-        const headerHeight = parseInt(window.getComputedStyle(headerContainer).getPropertyValue("height"));
-
-        var productCardIndex = 0;
-        
-        sellSectionGotoButton.addEventListener("click", () => {
-            const scrollCoord = sellSection.getBoundingClientRect().top + window.scrollY - headerHeight - (window.innerHeight * 0.025);
-            window.scrollTo({top: scrollCoord, behavior: "smooth"});
-
-            const containerExpandIcon = sellSection.querySelector(".btn-container-expand");
-            const containerItem = sellSection.querySelector(".container-generic-item");
-
-            containerExpandIcon.classList.add("expand");
-            containerItem.classList.add("expand");
-        });
-
-        productListGotoButton.addEventListener("click", () => {
-            const scrollCoord = productsSection.getBoundingClientRect().top + window.scrollY - headerHeight - (window.innerHeight * 0.025);
-            window.scrollTo({top: scrollCoord, behavior: "smooth"});
-        });
-
-        requestSectionGotoButton.addEventListener("click", () => {
-            const scrollCoord = requestSection.getBoundingClientRect().top + window.scrollY - headerHeight - (window.innerHeight * 0.025);
-            window.scrollTo({top: scrollCoord, behavior: "smooth"});
-
-            const containerExpandIcon = requestSection.querySelector(".btn-container-expand");
-            const containerItem = requestSection.querySelector(".container-generic-item");
-
-            containerExpandIcon.classList.add("expand");
-            containerItem.classList.add("expand");
-        });
-
-        forms.forEach(element => {
-            const containerHeader = element.querySelector(".container-header");
-            const containerExpandIcon = element.querySelector(".btn-container-expand");
-            const containerItem = element.querySelector(".container-generic-item");
-
-            containerHeader.addEventListener("click", () => {
-                containerExpandIcon.classList.toggle("expand");
-                containerItem.classList.toggle("expand");
-            });
-        });
-
-        productCards.forEach(element => {
-            element.style.setProperty("--delay", `${productCardIndex * 0.25}s`);
-            console.log(`${productCardIndex * 0.1}s`);
-            productCardIndex++;
-        });
-    </script>
 </body>
 </html>

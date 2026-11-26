@@ -1,12 +1,14 @@
-/* ==========================================
-   共通・リセット設定
-   ========================================== */
+/* 【解説】全要素(*)の余白をリセットし、paddingやborderを含めた幅計算(border-box)に統一する基本設定 */
+/* 【入力】
 * {
-    box-sizing: border-box; /* サイズ計算のズレを防ぐ */
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+*/
 
+
+/* 【解説】サイト全体で使い回す色やサイズを変数(--変数名)として定義。var(--primary-color)のように呼び出す */
 :root {
     --primary-color: #007bff;
     --primary-color-shaded: #0056b3;
@@ -28,6 +30,10 @@
     --light-gray: #999;
     --red: #c44;
 
+    --page-max-width: 1680px;
+    --page-gutter: clamp(16px, 4vw, 64px);
+
+    /* 【解説】height: 0px から height: auto へのアニメーションを滑らかにする最新CSS機能 */
     interpolate-size: allow-keywords;
     transition-timing-function: cubic-bezier(0.3 , 0, 0.15, 1);
 }
@@ -62,6 +68,7 @@
     animation-delay: var(--delay);
 }
 
+/* 【解説】カードの出現アニメーション。下から少し浮き上がりながら(appearSelfheight)透明度が1になる(fadeIn) */
 .generic-appear-fade {
     opacity: 0;
     animation: var(--transition-time, 1s) cubic-bezier(0.3 , 0, 0.15, 1) appearSelfheight, var(--transition-time, 1s) cubic-bezier(0.3 , 0, 0.15, 1) fadeIn forwards;
@@ -69,64 +76,50 @@
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 @keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
+    0% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes appearSelfheight {
-    0% {
-        transform: translate(0, var(--animation-height));
-    }
-
-    100% {
-        transform: translate(0, 0);
-    }
+    0% { transform: translate(0, var(--animation-height)); }
+    100% { transform: translate(0, 0); }
 }
 
 @keyframes disappearSelfheight {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    100% {
-        transform: translate(0, var(--animation-height));
-    }
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(0, var(--animation-height)); }
 }
 
+/* 【解説】画面のコンテンツが少なくてもフッターを一番下に固定するためのFlexbox設定 */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--white);
     color: var(--dark-gray);
     line-height: 1.6;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* 【入力】 display: flex; */
+
+    /* 【入力】 flex-direction: column; */
+
 }
 
-/* ==========================================
-   レイアウト・コンテナ
-   ========================================== */
+/* 【解説】flex: 1 を指定することで、余った縦のスペースをmain-containerがすべて引き受ける */
 .main-container {
-    max-width: 1000px;
+    width: 100%;
+    max-width: var(--page-max-width);
     margin: 32px auto;
-    padding: 0 48px;
+    padding: 0 var(--page-gutter);
+    /* 【入力】 flex: 1; */
+
 }
 
-/* ==========================================
-   コンポーネント: ボタン
-   ========================================== */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -168,33 +161,14 @@ body {
     background-color: var(--search-color-shaded);
 }
 
-.btn-profile {
-    fill: var(--dark-gray);
-}
+.btn-profile { fill: var(--dark-gray); }
+.btn-profile:hover { fill: var(--primary-color); }
 
-.btn-profile:hover {
-    fill: var(--primary-color);
-}
+.btn-edit { fill: var(--gray); stroke: var(--gray); }
+.btn-edit:hover { fill: var(--light-gray); stroke: var(--light-gray); }
 
-.btn-edit {
-    fill: var(--gray);
-    stroke: var(--gray);
-}
-
-.btn-edit:hover {
-    fill: var(--light-gray);
-    stroke: var(--light-gray);
-}
-
-.btn-delete {
-    fill: var(--gray);
-    stroke: var(--gray);
-}
-
-.btn-delete:hover {
-    fill: var(--red);
-    stroke: var(--red);
-}
+.btn-delete { fill: var(--gray); stroke: var(--gray); }
+.btn-delete:hover { fill: var(--red); stroke: var(--red); }
 
 .btn-disabled {
     background-color: var(--section-background-color);
@@ -217,6 +191,7 @@ body {
     transition-duration: 0.2s;
 }
 
+/* 【解説】アコーディオンの「V」矢印。scale(1, -1)で上下反転させ、expandが付くと元(1)に戻る */
 .btn-container-expand {
     --scaleY: -1;
     transform: scale(1, var(--scaleY));
@@ -230,28 +205,30 @@ body {
     --scaleY: 1;
 }
 
-/* ==========================================
-   ヘッダー & フッター
-   ========================================== */
+/* 【解説】position: sticky; top: 0; でスクロールしても画面上部に貼り付くヘッダーを作る */
 .header {
     background-color: var(--true-white);
     border-bottom: 2px solid var(--border-color);
-    position: sticky;
-    top: 0;
+    /* 【入力】 position: sticky; */
+
+    /* 【入力】 top: 0; */
+
     z-index: 100;
 }
 
+/* 【解説】justify-content: space-between; でロゴを左端、ナビゲーションを右端に配置する */
 .header-container {
-    max-width: 1000px;
+    max-width: var(--page-max-width);
     margin: 0 auto;
-    padding: 16px 48px;
+    padding: 16px var(--page-gutter);
     display: flex;
-    justify-content: space-between;
+    /* 【入力】 justify-content: space-between; */
+
     align-items: center;
 }
 
 .header-banner {
-    width: 400px;
+    width: auto;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -276,7 +253,7 @@ body {
 }
 
 .nav-link {
-    color: var(--dark-gray-grey);
+    color: var(--dark-gray);
     text-decoration: none;
     font-weight: 500;
     user-select: none;
@@ -294,9 +271,6 @@ body {
     margin-top: 64px;
 }
 
-/* ==========================================
-   検索セクション
-   ========================================== */
 .search-section {
     background-color: var(--true-white);
     padding: 24px;
@@ -333,9 +307,6 @@ body {
     background-color: var(--true-white);
 }
 
-/* ==========================================
-   商品一覧（グリッド）
-   ========================================== */
 .products-section {
     margin-bottom: 48px;
 }
@@ -344,19 +315,24 @@ body {
     margin-bottom: 20px;
 }
 
+/* 【解説】最小280pxのカードを、画面幅に入るだけ自動で横に並べるレスポンシブなグリッドレイアウト */
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* 【入力】 display: grid; */
+
+    /* 【入力】 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+
     gap: 24px;
 }
 
+/* 【解説】position: relative; をつけることで、中のバッジ(.product-badge)をカードの左上基準で配置できる */
 .product-card {
     background-color: var(--true-white);
     border-radius: 8px;
-    height: 380px;
+    height: clamp(360px, 44vh, 480px);
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    position: relative;
+    /* 【入力】 position: relative; */
+
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
@@ -382,8 +358,10 @@ body {
     margin: 8px 0;
 }
 
+/* 【解説】親要素(.product-card)の左上から12pxの位置に浮遊させるバッジ */
 .product-badge {
-    position: absolute;
+    /* 【入力】 position: absolute; */
+
     top: 12px;
     left: 12px;
     padding: 4px 8px;
@@ -420,7 +398,6 @@ body {
 }
 
 .product-card-taken .product-img-placeholder {
-    /* background-color: #BBB !important; */
     filter: saturate(0);
 }
 
@@ -431,28 +408,28 @@ body {
 
 .product-card-request .product-img-placeholder {
     background-color: var(--white) !important;
-    color: color-mix(var(--gray) 25%, transparent) !important;
-    fill: color-mix(var(--gray) 25%, transparent);
+    color: color-mix(in srgb, var(--gray) 25%, transparent) !important;
+    fill: color-mix(in srgb, var(--gray) 25%, transparent);
     font-size: 72px;
     font-weight: 100;
     transition: 0.2s;
 }
 
 .product-card-request:hover .product-img-placeholder {
-    color: color-mix(var(--gray) 50%, transparent) !important;
-    fill: color-mix(var(--gray) 50%, transparent);
+    color: color-mix(in srgb, var(--gray) 50%, transparent) !important;
+    fill: color-mix(in srgb, var(--gray) 50%, transparent);
 }
 
 .product-card-request .product-img-container {
-    height: 280px;
+    flex: 0 0 72%;
 }
 
 .product-card-request .product-info {
-    height: 60px;
+    height: auto;
 }
 
 .product-img-container {
-    height: 180px;
+    flex: 0 0 45%;
 }
 
 .product-img-placeholder {
@@ -464,7 +441,8 @@ body {
 }
 
 .product-info {
-    height: 200px;
+    height: auto;
+    min-height: 0;
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -489,8 +467,10 @@ body {
     margin-bottom: 4px;
 }
 
+/* 【解説】margin-top: auto; を使うことで、タイトルの長さに関わらず価格とボタンをカードの一番下に揃える */
 .product-footer {
-    margin-top: auto;
+    /* 【入力】 margin-top: auto; */
+
     padding-top: 12px;
     display: flex;
     justify-content: space-between;
@@ -502,17 +482,9 @@ body {
     font-weight: bold;
 }
 
-.product-price.free {
-    color: var(--free-color);
-}
+.product-price.free { color: var(--free-color); }
+.product-price.paid { color: var(--paid-color); }
 
-.product-price.paid {
-    color: var(--paid-color);
-}
-
-/* ==========================================
-   出品フォームセクション
-   ========================================== */
 .form-section {
     background-color: var(--true-white);
     padding: 0 32px;
@@ -521,14 +493,8 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* .form-section h2 {
-    margin-bottom: 24px;
-    border-bottom: 2px solid var(--white);
-    padding-bottom: 8px;
-} */
-
 .form-container {
-    max-width: 600px;
+    max-width: 720px;
     margin: 0 auto;
 }
 
@@ -587,15 +553,20 @@ body {
     justify-content: center;
 }
 
+/* 【解説】アコーディオンの本体。通常時は高さ0px＋はみ出し非表示(overflow: hidden)で隠しておく */
 .container-generic-item {
     flex: auto;
-    height: 0px;
-    overflow: hidden;
+    /* 【入力】 height: 0px; */
+
+    /* 【入力】 overflow: hidden; */
+
     transition: 0.6s;
 }
 
+/* 【解説】JSで .expand クラスが付与された時の状態。height: auto になり中身が展開される */
 .container-generic-item.expand {
-    height: auto;
+    /* 【入力】 height: auto; */
+
     padding-bottom: 32px;
 }
 
@@ -612,44 +583,11 @@ body {
     display: inline-block;
 }
 
-
-
-/* ==========================================
-   レスポンシブ対応 (スマートフォン用)
-   ========================================== */
+/* 【解説】レスポンシブ対応：画面幅が770px以下（スマホやタブレット縦向き）の時にレイアウトを縦積みに変更 */
 @media (max-width: 770px) {
     .search-form {
-        flex-direction: column;
+        /* 【入力】 flex-direction: column; */
+
     }
     .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-    .main-container {
-        margin: 16px auto;
-    }
-    .form-section {
-        padding: 16px;
-    }
-}
-
-@media (max-width: 920px) {
-    .header-container {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .header-banner {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 530px) {
-    .nav {
-        flex-direction: column;
-    }
-
-    .btn-profile {
-        margin: 0 !important;
-    }
-}
+        flex
